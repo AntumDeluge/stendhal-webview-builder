@@ -47,7 +47,11 @@ def cloneSource(url, target, branch="master"):
 
   if not os.path.exists(target):
     os.makedirs(target)
-  execute(checkExecutable("git"), ["clone", "--single-branch", "--branch={}".format(branch), "--depth=1", url, target])
+  try:
+    execute(checkExecutable("git"), ["clone", "--single-branch", "--branch={}".format(branch), "--depth=1", url, target])
+  except KeyboardInterrupt:
+    print("Cancelled")
+    sys.exit(0)
 
 def prepareStendhal():
   if not os.path.exists("android"):
