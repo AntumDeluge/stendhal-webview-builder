@@ -84,7 +84,7 @@ if __name__ == "__main__":
     if os.path.isfile(target):
       os.remove(target)
     shutil.copy("keystore.properties", target)
-  elif not os.path.isfile(target):
+  if not os.path.isfile(target):
     print("WARNING: keystore.properties file not available, packages will be signed using debug key")
 
   buildClient()
