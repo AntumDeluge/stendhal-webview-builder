@@ -53,10 +53,11 @@ def cloneSource(url, target, branch="master"):
     sys.exit(0)
 
 def prepareStendhal():
-  if not os.path.exists("android"):
-    if not os.path.exists(normPath("stendhal/build.xml")):
-      cloneSource("https://github.com/arianne/stendhal.git", "stendhal")
-    shutil.copytree(normPath("stendhal/android"), "android")
+  if not os.path.exists(normPath("stendhal/build.xml")):
+    cloneSource("https://github.com/arianne/stendhal.git", "stendhal")
+  if os.path.exists("android"):
+    shutil.rmtree("android")
+  shutil.copytree(normPath("stendhal/android"), "android")
 
 def buildClient():
   os.chdir("android")
