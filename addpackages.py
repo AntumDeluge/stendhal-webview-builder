@@ -51,25 +51,39 @@ def getNewPackages():
   return packages
 
 def writePackageList(packages):
-  # HTML page
-  text_out = "<html>\
-\n<head>\
-\n<title>Stendhal Android Client</title>\
-\n</head>\
-\n\
-\n<body>\
-\n  Releases:\
-\n  <ul>"
+  if not os.path.isfile("main.js"):
+    return
 
-  for package in packages:
-    text_out = text_out + "\n    <li><a href=\"dist/{0}\">{0}</a></li>".format(package)
+  fin = codecs.open("main.js", "r", "utf-8")
+  lines_in = fin.read().replace("\r\n", "\n").replace("\r", "\n").split("\n")
+  fin.close()
 
-  text_out = text_out + "\n  </ul>\
-\n</body>\
-\n</html>"
+  lines_out = []
+  in_package_list = False
+  insert_index = 0
 
-  fout = codecs.open("index.html", "w", "utf-8")
-  fout.write(text_out.strip() + "\n")
+  for idx in range(len(lines_in)):
+    li = lines_in[idx]
+    if li == "];":
+      in_package_list = False
+    if in_package_list:
+      continue
+    if li == "const releases = [":
+      in_package_list = True
+      insert_index = idx
+    lines_out.append(li)
+
+  pcount = len(packages)
+  for idx in range(pcount):
+    package = packages[idx]
+    insert_index += 1
+    li = "\t\"{}\"".format(package[17:package.index(".apk")])
+    if idx < pcount - 1:
+      li += ","
+    lines_out.insert(insert_index, li)
+
+  fout = codecs.open("main.js", "w", "utf-8")
+  fout.write("\n".join(lines_out))
   fout.close()
 
 
