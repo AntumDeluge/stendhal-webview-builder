@@ -59,14 +59,6 @@ def prepareStendhal():
       cloneSource("https://github.com/arianne/stendhal.git", "stendhal")
     shutil.copytree(normPath("stendhal/android"), "android")
 
-def prepareMarauroa():
-  dir_marauroa = joinPath(dir_root, "android/deps/marauroa")
-  if not os.path.exists(joinPath(dir_marauroa, "build.xml")):
-    cloneSource("https://github.com/arianne/marauroa.git", dir_marauroa)
-  if not os.path.isfile(joinPath(dir_marauroa, "build-archive/marauroa.jar")):
-    os.chdir(dir_marauroa)
-    execute(checkExecutable("ant", "bat"), ["jar"])
-
 def buildClient():
   os.chdir("android")
   execute(checkExecutable("./gradlew", "bat"), ["assembleDebug", "assembleRelease"])
@@ -87,7 +79,6 @@ def buildClient():
 if __name__ == "__main__":
   os.chdir(dir_root)
   prepareStendhal()
-  prepareMarauroa()
 
   target = joinPath("android", "keystore.properties")
   if os.path.isfile("keystore.properties"):
