@@ -80,7 +80,14 @@ if __name__ == "__main__":
   os.chdir(dir_root)
   prepareStendhal()
 
+  target = joinPath("android", "local.properties")
+  if os.path.isfile("local.properties"):
+    if os.path.isfile(target):
+      os.remove(target)
+    shutil.copy("local.properties", target)
   target = joinPath("android", "keystore.properties")
+  if not os.path.isfile(target):
+    print("WARNING: local.properties file not available, ANDROID_SDK_ROOT environment variable will be used")
   if os.path.isfile("keystore.properties"):
     if os.path.isfile(target):
       os.remove(target)

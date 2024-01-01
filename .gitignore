@@ -1,4 +1,5 @@
-/android/
-/build/
-/stendhal/
+/android
+/build
+/stendhal
 /keystore.properties
+/local.properties
