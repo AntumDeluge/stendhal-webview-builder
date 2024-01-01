@@ -4,7 +4,6 @@
 #
 # License: MIT (see LICENSE.txt)
 
-import errno
 import os
 import platform
 import shutil
