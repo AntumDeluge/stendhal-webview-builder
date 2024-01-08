@@ -1,4 +1,9 @@
 
 body {
 	font-size: large;
+	background-image: url("res/panel_aqua_tile.png");
+}
+
+body, a:link, a:visited {
+	color: #ffffff;
 }
