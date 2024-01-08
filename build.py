@@ -4,6 +4,7 @@
 #
 # License: MIT (see LICENSE.txt)
 
+import errno
 import os
 import platform
 import shutil
@@ -55,12 +56,16 @@ def cloneSource(url, target, branch="master"):
 def prepareStendhal():
   if not os.path.exists(normPath("stendhal/build.xml")):
     cloneSource("https://github.com/arianne/stendhal.git", "stendhal")
-  if os.path.exists("android"):
-    shutil.rmtree("android")
-  shutil.copytree(normPath("stendhal/android"), "android")
+  if os.path.exists("app"):
+    shutil.rmtree("app")
+  android_root = os.path.normpath("stendhal/app/android")
+  if not os.path.isdir(android_root):
+    exitWithError(errno.ENOENT, "Android source directory '{}' not found".format(android_root))
+  os.makedirs("app")
+  shutil.copytree(android_root, os.path.normpath("app/android"))
 
 def buildClient():
-  os.chdir("android")
+  os.chdir("app/android")
   execute(checkExecutable("./gradlew", "bat"), ["assembleDebug", "assembleRelease"])
   os.chdir(dir_root)
   for ROOT, DIRS, FILES in os.walk(normPath("build/build_android_client")):
@@ -80,12 +85,12 @@ if __name__ == "__main__":
   os.chdir(dir_root)
   prepareStendhal()
 
-  target = joinPath("android", "local.properties")
+  target = joinPath("app/android", "local.properties")
   if os.path.isfile("local.properties"):
     if os.path.isfile(target):
       os.remove(target)
     shutil.copy("local.properties", target)
-  target = joinPath("android", "keystore.properties")
+  target = joinPath("app/android", "keystore.properties")
   if not os.path.isfile(target):
     print("WARNING: local.properties file not available, ANDROID_SDK_ROOT environment variable will be used")
   if os.path.isfile("keystore.properties"):
