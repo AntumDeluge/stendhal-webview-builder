@@ -8,7 +8,68 @@
 </head>
 
 <body>
-  Releases:
+  <h3>Description</h3>
+
+  <p>This is an <a href="https://play.google.com/store/apps/details?id=com.google.android.webview">Android WebView</a>
+  client for <a href="https://stendhalgame.org/">Stendhal</a> that is designed to be optimized as a conduit for the
+  browser-based web client. In essence, a WebView client is simply a
+  <a href="https://en.wikipedia.org/wiki/Web_browser">web browser</a> or an interpreter for HTML markup. In comparison
+  to fully-fledged web browsers, it strips many commonly found widgets used to enhance the experience of browsing the
+  internet, such as URL bars &amp; tabs. This allows for the client to make use of more of the screen area. And because
+  the app is geared toward a single specific website, many of the normal browser features would be of no use.</p>
+
+  <p>Because many of these features are not implemented, it should also use less system resources than loading the web
+  client in a full browser &amp; may benefit users with lower-end devices. In addition, it will have some features that
+  may not be available while playing in a normal browser such as customizing parts of the container interface.</p>
+
+  <h3>Warnings &amp; Disclaimers</h3>
+
+  <p class="ital">While I am a member of the Stendhal development team, these packages should <b>NOT</b> be considered
+  official. I am using this release system to test the software, &amp; facilitate others in contributing with testing,
+  with the goal of eventual official releases. Be wary of installing packages from third party sources as they could
+  steal your information.</p>
+
+  <h3>Installation</h3>
+
+  <p class="ital"><b>Note:</b> You will need to enable installation from sources outside the Google Play store.
+  Instructions can be found <a href="https://www.androidauthority.com/how-to-install-apks-31494/">here</a>.</p>
+
+  <ol>
+    <li>Download the .apk to your device.</li>
+    <li>Open the .apk.</li>
+    <li>After installation completes, there will be an associated launch icon in the app drawer.</li>
+    <li>Launch the "Stendhal" or "Stendhal (debug)" app.</li>
+    <li>From the initial splash screen, press the "Connect" button located in the menu bar at the bottom of the screen.</li>
+    <ul>
+      <li>If you installed the debug .apk, you will be prompted to select between the main &amp; test client &amp;
+      server.</li>
+    </ul>
+    <li>You will then be directed to the character select screen.</li>
+    <ul>
+      <li>If you are not currently logged in you will be prompted for username &amp; password or account creation.</li>
+    </ul>
+    <li>The first screen will prompt you for your username &amp; password, after which, the character select page will
+    open upon successful login.</li>
+    <ul>
+      <li>If a previous log in session is still active, it will immediately redirect to character select.</li>
+      <li>Once logged in you can manually navigate to character selection by pressing your username in the page menu
+      &amp; selecting "My Characters".</li>
+    </ul>
+    <li>Select a character to use &amp; the web client interface will begin loading.</li>
+  </ol>
+
+  <p>To toggle the built-in menu bar press the "&lt;" Android system navigation button.</p>
+
+  <p>To exit the game, you can simply close the app. If you want to disconnect &amp; return to the main web page without
+  exiting the app, you can press the menu button in the upper right area of the client &amp; select an option such as
+  "Hall of Fame" or "Select Character". To return to the splash screen, open the menu bar then select "Title".</p>
+
+  <p>The client supports viewing any pages under the <a href="https://stendhalgame.org/">stendhalgame.org</a> domain.
+  All external links will prompt the default associated activity to be launched. If this occurs while a character is
+  connected to the server it will be immediately disconnected to prevent attacks from other players &amp; entities,
+  &amp; loss of items while the interface is not in view.</p>
+
+  <h3>Releases:</h3>
   <ul id="releases"></ul>
 </body>
 </html>

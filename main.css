@@ -7,3 +7,7 @@ body {
 body, a:link, a:visited {
 	color: #ffffff;
 }
+
+.ital {
+	font-style: italic;
+}
